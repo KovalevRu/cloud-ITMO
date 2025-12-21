@@ -1,0 +1,25 @@
+name: Bad CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest   # 1. ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1   # 2. устаревшая версия
+
+      - name: Install Node.js
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs npm   # 3. установка через apt-get
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
