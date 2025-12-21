@@ -1,0 +1,25 @@
+name: Good CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04   # фиксированная версия ОС
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4   # актуальная версия
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20          # фиксированная версия ноды
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
